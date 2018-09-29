@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CorePlatform.Models.CabinetModels.Cabinet>
+
+@{
+    ViewData["Title"] = "Cabinets";
+}
+
+<h2>Cabinets</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                <i class="fa fa-microchip"></i> Controller
+            </th>
+            <th>
+                <i class="fa fa-lock"></i> Armed
+            </th>
+            <th>
+                <i class="fa fa-bell"></i> Security alarm
+            </th>
+            <th>
+                <i class="fa fa-fire"></i> Fire alarm
+            </th>
+            <th>
+                <i class="fa fa-ban"></i> Override
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nickname)
+            </td>
+            <td>
+                <a asp-controller="Controllers" asp-action="Details" asp-route-id="@item.ControllerId">Go to Controller</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityArmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityAlerted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FireAlerted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Override)
+            </td>
+            <td>
+                @if(!item.SecurityArmed)
+                {
+                    <a class="btn btn-warning btn-sm" onclick='queueCommand("@item.ControllerId", "arm", null, this)' href="#"><i class="fa fa-lock"></i> Arm</a>
+                } else
+                {
+                    <a class="btn btn-success btn-sm" onclick='queueCommand("@item.ControllerId", "disarm", null, this)' href="#"><i class="fa fa-lock-open"></i> Disarm</a>
+                }
+                
+                @if(!item.SecurityAlerted && !item.FireAlerted)
+                {
+                    <a class="btn btn-danger btn-sm" onclick='queueCommand("@item.ControllerId", "alarm", null, this)' href="#"><i class="fa fa-bell"></i> Panic</a>
+                } else
+                {
+                    <a class="btn btn-success btn-sm" onclick='queueCommand("@item.ControllerId", "silence", null, this)' href="#"><i class="fa fa-bell-slash"></i> Silence</a>
+                }
+                
+                @if(!item.Override)
+                {
+                    <a class="btn btn-default btn-sm" onclick='queueCommand("@item.ControllerId", "override", null, this)' href="#"><i class="fa fa-ban"></i> Override</a>
+                } else
+                {
+                    <a class="btn btn-default btn-sm" onclick='queueCommand("@item.ControllerId", "overrideOff", null, this)' href="#"><i class="fa fa-check-circle"></i> Override off</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

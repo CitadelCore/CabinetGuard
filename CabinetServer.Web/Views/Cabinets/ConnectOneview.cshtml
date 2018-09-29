@@ -1,0 +1,47 @@
+﻿@model CorePlatform.Models.CabinetModels.Cabinet
+
+<h4>Cabinet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="View">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="OneviewHostname" class="control-label"></label>
+                <br />
+                <i>FQDN to the HPE OneView appliance.</i>
+                <input asp-for="OneviewHostname" class="form-control" id="hostname" />
+                <span asp-validation-for="OneviewHostname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OneviewUsername" class="control-label"></label>
+                <br />
+                <i>Must have access to view the cabinet.</i>
+                <input asp-for="OneviewUsername" class="form-control" id="username" />
+                <span asp-validation-for="OneviewUsername" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OneviewPassword" class="control-label"></label>
+                <input asp-for="OneviewPassword" class="form-control" type="password" id="password" />
+                <span asp-validation-for="OneviewPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" /> Skip OneView certificate validation
+                    </label>
+                </div>
+                <i class="fa fa-exclamation-triangle"></i> Warning! Changing this is a security risk.
+            </div>
+            <div class="form-group">
+                <input type="button" onclick="validateOneView()" class="btn btn-default" value="Add OneView Appliance" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Cabinet</a>
+</div>
+

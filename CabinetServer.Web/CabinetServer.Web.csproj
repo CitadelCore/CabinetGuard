@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-CabinetServer.Web-414CDEF3-A1B4-42CA-8D38-C82633FC181C</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Control\**" />
+    <Content Remove="Views\Control\**" />
+    <EmbeddedResource Remove="Views\Control\**" />
+    <None Remove="Views\Control\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.WsFederation" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.WsFederation" Version="5.2.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CorePlatform\CorePlatform.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Validation\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ErrorStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ErrorStrings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ErrorStrings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

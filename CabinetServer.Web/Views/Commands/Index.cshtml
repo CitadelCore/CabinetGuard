@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CorePlatform.Models.CabinetModels.ScheduledCommand>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Commands</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Controller ID
+                </th>
+                <th>
+                    Command
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    Result
+                </th>
+                <th>
+                    Time Created
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="@Html.DisplayFor(modelItem => item.RowStyle)">
+            <td>
+                @Html.DisplayFor(modelItem => item.ControllerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatePretty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultPretty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeCreated)
+            </td>
+            <td>
+                <a asp-action="Cancel" asp-route-id="@item.Id">Cancel</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

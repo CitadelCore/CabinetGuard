@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Tuple<CorePlatform.Models.CabinetModels.CabinetController, CorePlatform.Models.CabinetModels.Cabinet>>
+
+@{
+    ViewData["Title"] = "Controllers";
+}
+
+<h2>Controllers</h2>
+
+<p>
+    <a asp-action="Create">Enroll new controller</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    <i class="fa fa-list"></i> Actions
+                </th>
+                <th>
+                    <i class="fa fa-plug"></i> State
+                </th>
+                <th>
+                    <i class="fa fa-microchip"></i> @Html.DisplayNameFor(model => model.Item1.FmcResponding)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Item1.Nickname)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="@Html.DisplayFor(modelItem => item.Item1.RowStyle)">
+            <td>
+                No actions available
+            </td>
+            <td>
+                @if (item.Item1.Authorized && item.Item1.HubConnectionId != null)
+                {
+                    <p><i class="fa fa-check"></i> Connected</p>
+                }
+                else if (item.Item1.Authorized && item.Item1.HubConnectionId == null)
+                {
+                    <p><i class="fa fa-times"></i> Disconnected</p>
+                }
+                else
+                {
+                    <p><i class="fa fa-hourglass"></i> Enrolling</p>
+                }
+            </td>
+            <td>
+                @if (item.Item1.HubConnectionId == null)
+                {
+                    <p><i class="fa fa-question-circle"></i> Unknown</p>
+                }
+                else if (item.Item1.FmcResponding)
+                {
+                    <p><i class="fa fa-check"></i> Responding</p>
+                }
+                else
+                {
+                    <p><i class="fa fa-times"></i> Not responding</p>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item1.Nickname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Item1.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Item1.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Item1.Id">Remove</a> |
+                <a asp-action="RunCommand" asp-route-id="@item.Item1.Id">Run command</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

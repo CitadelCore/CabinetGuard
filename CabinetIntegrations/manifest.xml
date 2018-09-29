@@ -1,0 +1,17 @@
+﻿<ConsoleAddIn
+  xmlns="urn:VMM-AddIns-v1"
+  Name="CabinetGuard Add-in"
+  Version="1.0.0.0"
+  Author="TOWER"
+  Description="Integrates with CCS 2018 and provides the ability to control and monitor cabinets."
+  FolderName="CCS2018AddIn">
+  <ViewAddIn
+    Name="Cabinet View Add-in"
+    Contexts="HostGroup Host Cluster Service"
+    AssemblyName="Tower.CabinetGuard.Integrations"
+    Icon="ccs.ico">
+    <ButtonLabel>
+      Cabinet Manager
+    </ButtonLabel>
+  </ViewAddIn>
+</ConsoleAddIn>

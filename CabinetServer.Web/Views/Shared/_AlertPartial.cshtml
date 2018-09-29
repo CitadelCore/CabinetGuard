@@ -1,0 +1,32 @@
+﻿@if(ViewBag.HasAlert == true)
+{
+<div class="alert alert-@ViewBag.AlertType">
+    @if (String.IsNullOrEmpty(ViewBag.AlertMessage))
+    {
+        switch (ViewBag.AlertType)
+        {
+            case "success":
+                <p><strong>Success!</strong> The request was successful.</p>
+                break;
+
+            case "info":
+                <p><strong>Information</strong> The request completed with additional information.</p>
+                break;
+
+            case "warning":
+                <p><strong>Warning</strong> The request completed with warnings. </p>
+                break;
+
+            case "danger":
+                <p><strong>Error!</strong> Something went wrong and your request couldn't be completed.</p>
+                break;
+        }
+
+    }
+    else
+    {
+        @ViewBag.AlertMessage
+    }
+
+</div>
+}
